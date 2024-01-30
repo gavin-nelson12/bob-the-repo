@@ -1,0 +1,79 @@
+---
+title: "Example"
+author: "Gavin Nelson"
+format: html
+---
+
+## 
+
+```{r}
+data("mtcars")
+
+#environment file so we can use load
+load(
+  url()
+)
+
+#for csv files, if file is really big, usse readr package for read_csv()
+#loads dataframe and returns dataframe, so we need to assign it to a variable
+mtcars <- read.csv()
+
+
+head(mtcars)
+```
+
+
+
+```{r}
+summary(mtcars)
+```
+
+
+```{r}
+#installs package if not there, otherwise it is loaded
+if(!require("pacman")){
+  install.packages("pacman")
+}
+
+#helps load package, loads specified packaged
+pacman::p_load("psych")
+
+#function from psych that describes df of mtcars about the columns that it has
+describe(mtcars)
+```
+
+```{r}
+plot(mtcars$hp, mtcars$mpg)
+
+```
+
+```{r}
+fit <- lm(mpg ~ hp, data = mtcars)
+summary(fit)
+
+#residual vs fit plot
+plot(fit, which = 1)
+```
+
+
+```{r}
+fit2 <- lm(log(mpg) ~ log(hp), data = mtcars)
+summary(fit2)
+
+plot(fit2, which = 1)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
