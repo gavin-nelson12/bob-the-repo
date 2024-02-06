@@ -1,0 +1,264 @@
+---
+title: "1/30 notes (simple linear regression)"
+author: "Gavin Nelson"
+format: html
+editor: visual
+---
+
+# 1/30 
+
+```{r}
+food <- read.csv(url())
+head(food)
+```
+
+3 main types for quantitative variables
+
+time series - data from one unit over time,
+cross-sectional - many individuals at a point in time each observation is one person,
+panel - a collection of quantities obtained across multiple individuals, that are assembled over even intervals in time and ordered chronologically
+
+```{r}
+#get scatterplot of the two variables
+plot(food)
+
+pacman::p_load("psych")
+
+#gives matrix of hist of variables, correlation coefficient, not sure bottom left
+pairs.panel(food)
+
+
+```
+
+
+independent variables related with each other - co-linearity
+
+
+```{r}
+#uses ordinary least squares, dependent ~ independent
+mod1 <- lm(food_exp ~ income, data = food)
+
+summary(mod1)
+```
+
+want 5 number summary to be centered around 0
+
+next is coefficients
+
+we are assuming a linear relationship 
+
+standard error (deviation) - is difference between sample mean and population mean
+                          - indicates how different the population mean is likely to be from a sample mean
+
+t-value - distribution is student t, more often t-stat/ratio, divides estimate/std. error
+
+p-value - tests the significance of the variables, means that there is an impact (significant) in this case, there is an impact that th emore money you make the more you will spend on food
+
+f test is identical to the t test, same null hypothesis, but different distributions
+
+residual standard error/standard error regression - standard deviation of residuals
+
+y hat = b0 + b1*x
+
+y = yhat + residual
+
+```{r}
+#pllot of variables
+```
+
+looks like there is a linear relationship, but there is a cone that the line bisects
+    this is heteroskadicity
+    - in this model it can make sense because when you have more kmoney there are more options
+    - some may choose to save, others may spend more higher incomes
+    - when not much income, limited options
+    - might need more variables in this model
+
+```{r}
+new.data <- data.frame(income = 20)
+
+predict(mod1, newdata = new.data, interval = "predict")
+
+```
+
+intervals are predict (individual) or confidence (group)
+
+fit is point prediction is same, but intervals are different
+
+group, predictions are easy, for an individual it is harder
+ - individual is harder so wider bands, confidence bands are closer together
+ 
+ can calculate standard error, using 95% confidence interval via fit and then one bound
+
+```{r}
+
+
+```
+
+weather forecast is always right, there is a percent chance of each part of the possible outcomes happening
+
+prediction is t distribution
+
+forecast ranges and probabilities for those ranges, not numbers
+
+break set of outcomes down into different categories and put probabilities on each of those categories happening
+
+
+
+se and t-stat says haw many standard errors we are away from mean
+
+
+exogenous - creatied outside
+
+
+2. Assesing Goodness-of-Fit in Linear Regression
+
+
+
+
+```{r}
+
+```
+
+
+# 2/1 Notes
+
+alpha is the area of the rejection region
+
+p-value less than alpha means statistically significant
+
+t-distribution is used for predictions, more complicated than normal, need 3 parameters for it (mean, st dev, deg of free),
+ - too complication so we use "standard" t-dist
+ 
+ degrees of freedom is way a system can wiggle
+  - n-1 because if we have mean, once we know the first n-1 scores, the last one (n) is fixed in order to reach the mean we know
+  - parameters - estimators?
+  
+prediction interval wider than confidence b/c predicting for individual is harder than a group
+
+
+## R squared
+
+goodness of fit - how good the linear model is a fitting the data from predicted values to the actual values
+
+over fitting becomes issue if the model is perfect, brings noise into our model
+
+use model to filter out the noise
+
+
+balance of how well model can fit without noise, filter out things we dont need
+  - dont want to being in noise that is not information
+
+- The coefficient of determination,  R2, is defined as the proportion of the variance in  y that is explained by the regression,  SSR
+ , in the total variation in  y,  SST.
+ 
+ - R@ compares to average value of y, 
+ - model is farther away from average than what 
+ 
+ 
+ 
+ 
+ ### how much closer our model is compared to the average of y - R squared
+ 
+ 
+
+
+high R squared does not mean a better model, potential of over fitting
+
+
+r squared coherent to signal to noise ratio
+
+
+r2 gets bigger with more parameters, means r2 cannot really be used for model selection
+  except when models are fairly similar
+  
+  
+
+This gives us adjusted r squared:
+  - adds penalty for adding irrelevant variables to model 
+  - not a goodness of fit, is a model selection material
+  - information criterion
+  
+  
+  
+### Plotting data
+  - anscombe's quartet has 4 sets of x/ys that all give the same regression equation when plotted
+    - but all the graphs look very different, one normal with noise, one liner with outlier, curved, all same x with diff y
+
+one method of using outliers is to try and find other data around it, IQ method, sometimes you need to drop outliers if not significant
+
+
+
+## residuals versus fitted, lays model on side, want red line to be as close to 0
+plot(model), most important one
+
+hetero screws with st error which screws with hypoth testing
+
+
+qq plot
+plot(model, )
+
+
+
+perfer histogram over qq plot as long as it looks normal, gives shape of distribution of residuals
+compared to qq plot
+
+
+
+scale-location - no need
+
+residulas vs leverage - can look at scatterplot of resid vs fitted to see this
+
+
+if there is non linear relationship, things we can do to make it linear or more linear
+
+
+use log a lot b/c it increases at decreasing rate
+
+regression model is equation, all other rules of algebra and calc still apply
+
+
+# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
