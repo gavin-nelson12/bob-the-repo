@@ -1,0 +1,108 @@
+---
+title: "2/6 Notes"
+author: "Gavin Nelson"
+format: html
+editor: visual
+---
+
+## 2/6 Notes
+
+```{r}
+if(!require("pacman")) install.packages("pacman")
+pacman::p_load_gh("ccolonescu/POESRdata")
+pacman::p_load_gh("ccolonescu/PoEdata")
+
+load(andy)
+head(andy)
+```
+
+
+
+```{r}
+pacman::p_load("jtools")
+
+andy.sales <- lm(sales ~ price + advert, data = andy)
+sum(andy.sales)
+
+```
+
+diminishing returns here but model does not show this, means relationship is non-linear
+
+
+```{r}
+psych::pairs.panels(andy)
+```
+
+We can see the diminishing returns in sales/advert scatterplot
+
+
+```{r}
+plot.fitted(andy.sales)
+```
+
+Want to see most points in the dark gray, less in light gray, none(?) in white space
+
+
+
+quadratic model
+```{r}
+mod2 <- lm(sales ~ price + I(advert^2), data = andy)
+#I treats inside as math
+summary(mod2)
+plot.fitted(mod2)
+```
+
+concave up/down will be created by quadratic, will show a point of diminishing returns
+R-squared went up as we added another parameter
+
+
+```{r}
+#space
+```
+
+### Doing a log-log model
+
+```{r}
+mod3 <- lm(log(sales) ~ log(price), data = andy)
+```
+
+think sign will change - quadratic
+not - log
+
+elasticity - percent change x / percent change y
+  - how much will y change if x chnages by a certain percent
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```
+
