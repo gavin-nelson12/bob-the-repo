@@ -84,6 +84,21 @@ elasticity - percent change x / percent change y
   
   KNOW THE BACKGROUND OF THE DATA
 
+
+# 2/8 Notes
+
+slope is variables against each other
+elasticity - number stays constant, percent change in x over percent change in y
+
+log-liner vs. linear-log
+
+
+use logs b/c they take non-linear graphs and change them into linear-like graphs
+
+in general,d ont vare about llog of y, just y, problem with then doing exp(y), is that there will be some bias
+  - to fix it, multiply by e to sigma squared over 2, standard error of y hat
+
+
 ```{r}
 
 ```
